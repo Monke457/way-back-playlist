@@ -15,22 +15,21 @@
 <body>
 	<div class="content">
 		<?php 
-			/*
 			$data = get_data($_POST['year'], $_POST['month']); 
 			$songs = parse_data($data);
-			*/
-			
-			$songs = get_test_data();
-			
+	
 			//accordion
 			forEach ($songs as $song) {
 				//element with youtube player
-				//echo $song->artist .": " .$song->title ."<br>";
-				$code = get_video_code($song->artist, $song->title);
-				echo "<button class='accordion'>$song->artist - $song->title</button>";
-				echo "<div class='panel'>";
-				echo "<iframe class='video' src='https://www.youtube.com/embed/$code' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
-				echo "</div>";
+				$code = get_video_code($song);
+				if ($code == null) {
+					echo "Couldn't find a video for this song.";
+				} else {
+					echo "<button class='accordion'>$song->artist - $song->title</button>";
+					echo "<div class='panel'>";
+					echo "<iframe class='video' src='https://www.youtube.com/embed/$code' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+					echo "</div>";
+				}
 			}
 		?>
 		
