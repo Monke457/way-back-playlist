@@ -1,0 +1,102 @@
+* {
+	font-family: Impact;
+    font-size: xx-large;
+    letter-spacing: 1px;
+}
+
+body {
+	width: 100%;
+    height: 100vh;
+    margin: auto;
+    background-color: #272a36;
+    color: white;
+}
+
+select {
+	margin-bottom:30px;
+	border-radius: 5px;
+    background-color: #800020;
+    border: 2px solid gold;
+    padding: 5px 10px;
+    color: white;
+	cursor: pointer;
+}
+
+button[type=submit] {
+	border-radius: 5px;
+    background-color: gold;
+    border: 2px solid #800020;
+    padding: 5px 10px;
+    color: #800020;
+	cursor: pointer;
+}
+
+.header {
+	height:100px;
+    width: 100%;
+    border-bottom: 4px solid gold;
+	background-color: #800020;
+	display:inline-flex;
+	align-items:center;
+	justify-content:space-between;
+}
+
+.title {
+    padding-left: 20px;
+}
+
+.logo {
+	padding-right:20px;
+}
+
+.content {
+	width: 100%;
+	text-align:center;
+}
+
+.instructions {
+	padding: 0 20px;
+}
+
+.accordion {
+	background-color: #272a36;
+	color: white;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 18px;
+	transition: 0.4s;
+	border-bottom: 2px solid gold;
+}
+
+.active, .accordion:hover {
+	background-color: gold;
+	color: #800020;
+}
+
+.accordion:after {
+	content: '\002B';
+	color: white;
+	float: right;
+	margin-left: 5px;
+}
+
+.active:after {
+	content: "\2212";
+}
+
+.panel {
+	background-color: #62646e;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+}
+
+.video {
+	width:560px;
+	height:315px;
+	max-width:100vw;	
+}
