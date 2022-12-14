@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Way Back Playlist</title>
 </head>
-<script src="js/script.js"></script>
+<script type='text/javascript' src="js/script.js"></script>
+<script type='text/javascript' src='config/config.js'></script>
 <body>
 	<div class="content">
 		<?php 
@@ -40,7 +41,6 @@
 <script>
 	var acc = document.getElementsByClassName("accordion");
 	var i;
-
 	for (i = 0; i < acc.length; i++) {
 	  acc[i].addEventListener("click", function() {
 		this.classList.toggle("active");
@@ -52,15 +52,15 @@
 		} 
 	  });
 	}
-
+	
 	function get_video(searchTerm, id) {
 		var el = document.getElementById(id);
 		if (el.classList.contains('empty')) {
-			const YOUTUBE_API_KEY = 'AIzaSyDirInrRS94Dyz2tq2hMQaYkyeENzqjmEM';
-			var url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + searchTerm + '&key=' + YOUTUBE_API_KEY;
+			var key = config.SECRET_API_KEY;
+			var url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + searchTerm + '&key=' + key;
 			fetch(url)
-			.then(response => response.json())
-			.then(data => {  
+			  .then(response => response.json())
+			  .then(data => {  
 				el.src = 'https://www.youtube.com/embed/' + data.items[0].id.videoId;
 			});
 			el.classList.remove('empty');
