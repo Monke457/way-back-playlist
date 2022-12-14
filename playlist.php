@@ -17,22 +17,24 @@
 		<?php 
 			$data = get_data($_POST['year'], $_POST['month']); 
 			$songs = parse_data($data);
-	
+
 			//accordion
-			forEach ($songs as $song) {
-				//element with youtube player
-				$code = get_video_code($song);
-				if ($code == null) {
-					echo "Couldn't find a video for this song.";
-				} else {
-					echo "<button class='accordion'>$song->artist - $song->title</button>";
-					echo "<div class='panel'>";
-					echo "<iframe class='video' src='https://www.youtube.com/embed/$code' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
-					echo "</div>";
-				}
+			for ($i = 0; $i < count($songs); $i++) {
+				//element with youtube player	
+				//$code = get_video_code($song);
+				
+				$song = $songs[$i];
+				$artist = $song->artist;
+				$title = $song->title;
+				$term = str_replace('\'', '', $artist .' ' .$title);
+				$term = str_replace('"', '', $term);
+				
+				echo "<button class='accordion' onclick='get_video(\"$term\", $i)'>$artist - $title</button>";
+				echo "<div class='panel'>";
+				echo "<iframe class='video empty' id='$i' src='' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+				echo "</div>";
 			}
 		?>
-		
 	</div>
 </body>
 <script>

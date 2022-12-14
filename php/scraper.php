@@ -51,40 +51,4 @@
 	}
 	return $songs;
  }
- 
- function get_video_code($song) {
-	$searchTerm = $song->artist ." " .$song->title;
-	$searchTerm = str_replace(' ', '%20', $searchTerm);
-	
-	$myApiKey = 'AIzaSyDirInrRS94Dyz2tq2hMQaYkyeENzqjmEM'; 
-	$googleApi = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=' .$searchTerm .'&key=' .$myApiKey;
-
-	$ch = curl_init();
-
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-	curl_setopt($ch, CURLOPT_URL, $googleApi);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	curl_setopt($ch, CURLOPT_VERBOSE, 0);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-	$curlResource = curl_exec($ch);
-
-	curl_close($ch);
-
-	$youtubeData = json_decode($curlResource);
-	$youtubeVals = json_decode(json_encode($youtubeData), true);
-	if ($youtubeVals['items'] == null) {
-		return null;
-	}
-	$videoId = $youtubeVals['items'][0]['id']['videoId'];
-
-	return $videoId;
- }
- 
- function get_test_data() {
-	$songs = array(new Song("Elvis Presley", "Way Down"), new Song("Space", "Magic Fly"), new Song("David Soul", "Silver Lady"), new Song("Jean Michel Jarre", "Oxygene Part IV"));
-	return $songs;
- }
 ?>

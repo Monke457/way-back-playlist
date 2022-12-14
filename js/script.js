@@ -13,3 +13,21 @@ function update_month() {
 		}
 	}
 }
+
+function get_video(searchTerm, id) {
+	var el = document.getElementById(id);
+	if (el.classList.contains('empty')) {
+		const YOUTUBE_API_KEY = 'AIzaSyDirInrRS94Dyz2tq2hMQaYkyeENzqjmEM';
+		var url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + searchTerm + '&key=' + YOUTUBE_API_KEY;
+		fetch(url)
+		  .then(response => response.json())
+		  .then(data => {  
+			el.src = 'https://www.youtube.com/embed/' + data.items[0].id.videoId;
+		});
+		el.classList.remove('empty');
+	}
+}
+
+
+
+
